@@ -1,28 +1,10 @@
 services:
-  - type: cron
-    name: gsheet-push-cron
-    plan: starter
-    schedule: "@hourly"
-    env:
-      - GOOGLE_APPLICATION_CREDENTIALS=gsheet-426913-6e02a0c69199.json
-    buildCommand: ""
-    startCommand: "gsheet_push.py"
-    secrets:
-      - GOOGLE_APPLICATION_CREDENTIALS_JSON
+  - type: web
+    name: gsheet-push-service
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python gsheet_push.py"
+    envVars:
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: gsheet-426913-6e02a0c69199.json
 
-files:
-  - path: .render/secrets/GOOGLE_APPLICATION_CREDENTIALS_JSON
-    contents: |
-      {
-        "type": "service_account",
-        "project_id": "gsheet-426913",
-        "private_key_id": "6e02a0c69199d63767ff2ae888cbd44e4d3b8c8d",
-        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDH/0nyntNU1pYo\npIsEAbi+mti5o3EuwYUxRjI87ycuikFiDRZMaMgG/0aYu1Csi2jLApYFK/G/Dg7H\nngOBvauCuMUq4AHGmIs4iR5fwL2en+K4n8mRh5VyHULm+bEo4FxWrgvEvXSZvboM\nBdUb+lJI0Fc/Xa0KiaSJwzlX+YiLSREsyEsjk38KntV7p7bAypoZtijQW4zl2TLs\nBd9xwkbYb1yWI8qQ2m7VjjS2piERizQsvH5yLhCpSAHbSrZyyLDg5LTrOT5xdIIt\nbicfjN3MSaLIzc4iIJ3aZr7UzkAHySuSL1tf8uCRUAXBO14zsGCuaxtAJqZ0mxSd\nL549eKlxAgMBAAECggEANYeBvlt+StXIiQZJYwAm93UwjrdNQutu/9o+9go4nX9J\nsrm3/ymIaD8JITX5iMUjfjqp9qZlZPKZSBpl6+LdNfbIZwpfz0zi7nXc2FoZJoy6\nvRmfdMEqYcmtL28jWMJ8VILvCXB/9epPEoq5GGzueyiwQXiMKSbgEDNddMuIHWcu\nmEespdDNJUDMnpDP0VS7m7y9nSoSyeQedoiwj6wjchXgEcDzZepy0oswBpu0zKmF\nDm1ziG/ujWlFWsyqNnO+Cx1eZL3yPph67mbRNQ4mBn1ivjgIPTRRsHFwZxlsfNzf\npSR3Lra6fOYhQDxXq1RDYuyBbzGbjwOfi+SIMZL0dQKBgQD1ZttcfQ+pjY30Qg8P\ntFIcs2oTAPLRgt9i4tQb8jJ2XOxnVXcNCvRlEDkfUas40crxgOD+WMJkL+ljkge7\n4KmNeDT/0G7CBxl2W36eEpSH92ZYqtwcpwfJsvlbO2o7sFS/29xsEUnmQKDuWTRk\nopw+QuM3hCea4YtITbdCBIsLzwKBgQDQonFRoxBsEpJRto/JxEOk/L7dZ4BvFnV3\nNHqlh97P4X4NUv2MFEiZC0D+TyLgEh/UGuYNfcPHt4AdpnnEEtv7exV3dNVUbvxw\nDlS1lHlCxtAYMgPBIx0qMPwYW3giUHVzFQZ4WIqxBxNSzNYodpdBJy/Z33l+4+H6\naBM8CkwGvwKBgQDIyU22UQUdn5qEPgCAwvNkVE/4GJCUZ9ZK3HjcHMC5I7KxobX0\nz//DKRDz1SiZJt47101ADnOO8byuIW9+g4V3IOGMZYgZ7SEiPB5PS7iHvx7YcYQD\nVY8DsxJfWS/EgrP0/vlM2qByanLCUe6SYJIiRywN4m1dRilmEWBd/cWe9QKBgQCM\nYmGhrvlj3vM5rIAAIeHqaG79h6FyHkiYF2XXcB9K/c3VpVwaH6Ph5yKqfBFZeJiW\nHitiNJfCEQVR7izM9Gu1QdLl+GV7VNrjg6EYNXmKp0Bqp2zDTp9XPnLC6PljDYSa\nFTGvVNSt3bbw5gfMXk/UdUvLbIXSDgCGf/VBVyRk/QKBgB3UrZG7jr674s0d6eck\nnkq8p4Mx5rKEcW/nFRZjAyxE6e/JndatoR6Ti5su1eofhG9thYoTyGehwyaiTSy8\nxYz+pjb0IDplbAgByUH4oWuZqa0g7EbOn+R9VGEe+bi3refs+Tnoc4WNZ9eirxM2\nyokCO7AtnwLYV8lld3vsQ82p\n-----END PRIVATE KEY-----\n",
-        "client_email": "gsheet-push@gsheet-426913.iam.gserviceaccount.com",
-        "client_id": "108667774981221319960",
-        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        "token_uri": "https://oauth2.googleapis.com/token",
-        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gsheet-push%40gsheet-426913.iam.gserviceaccount.com",
-        "universe_domain": "googleapis.com"
-      }
