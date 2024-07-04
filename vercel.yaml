@@ -3,6 +3,8 @@
 # Define the deployment settings
 name: gsheet-push-example
 version: 2
+root: path/to/project-root  # Specify the root directory here if needed
+
 builds:
   - src: gsheet_push.py  # Assuming your script is named gsheet_push.py
     use: vercel/python
@@ -20,3 +22,4 @@ env:
 secrets:
   - name: google-service-account
     file: path/to/gsheet-426913-6e02a0c69199.json  # Path to your Google service account JSON file
+
