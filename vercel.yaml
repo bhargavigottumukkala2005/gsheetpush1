@@ -1,0 +1,22 @@
+# vercel.yaml
+
+# Define the deployment settings
+name: gsheet-push-example
+version: 2
+builds:
+  - src: gsheet_push.py  # Assuming your script is named gsheet_push.py
+    use: vercel/python
+routes:
+  - src: "/gsheet-push"
+    methods: [POST]  # Optional: Restrict HTTP method if needed
+    script: gsheet_push.py  # Entry point script for handling requests
+
+# Environment variables configuration
+env:
+  GOOGLE_APPLICATION_CREDENTIALS: "@google-service-account"
+  GOOGLE_SHEET_NAME: 'gsheet_push'
+
+# Secrets configuration
+secrets:
+  - name: google-service-account
+    file: path/to/gsheet-426913-6e02a0c69199.json  # Path to your Google service account JSON file
